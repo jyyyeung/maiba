@@ -1,9 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Vue from "vue";
-import { firestorePlugin } from "vuefire";
 
-Vue.use(firestorePlugin);
 const firebaseConfig = {
   apiKey: "AIzaSyD6ZAMHVEkEmTjGX9OBJmbE0vDOj5xJWnk",
   authDomain: "save-songlist.firebaseapp.com",
@@ -16,8 +13,6 @@ const firebaseConfig = {
 
 // Get a Firestore instance
 export const db = firebase.initializeApp(firebaseConfig).firestore();
-
-console.log(db);
 
 // Export types that exists in Firestore
 // This is not always necessary, but it's used in other examples

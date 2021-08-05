@@ -3,17 +3,34 @@ import axios from "axios";
 const net_ease = "https://netease-cloud-music-api-three-eta.vercel.app";
 
 export const list_songs = (name) => {
-  axios.get(`${net_ease}/search?keywords=${name}`).then((response) => {
-    const data = response.data.result;
-    console.log(data);
-    return data;
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${net_ease}/search?keywords=${name}`)
+      .then((response) => {
+        const data = response.data.result;
+        console.log(data);
+        return resolve(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject();
+      });
   });
 };
 
-export const song_details = (songId) => {
-  axios.get(`${net_ease}/song/detail?ids=${songId}`).then((response) => {
-    const data = response.data.result;
-    console.log(data);
-    return data;
+export const song_details = (songIdList) => {
+  console.log(songIdList);
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${net_ease}/song/detail?ids=${songIdList}`)
+      .then((response) => {
+        const data = response.data.songs;
+        console.log("song detail return data", data);
+        return resolve(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject();
+      });
   });
 };

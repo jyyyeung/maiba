@@ -9129,13 +9129,6 @@ vue@^2.6.11:
   resolved "https://registry.nlark.com/vue/download/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha1-5RqlJQJQ1Wmj+606ilpofWA24jU=
 
-vuefire@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/vuefire/-/vuefire-2.2.5.tgz#b86d2124c66b94d4647afdd5d9fcf407d420824d"
-  integrity sha512-VwEmpJi6mJNdWXnEvjqqtpMZ1evJcVblnrr/AScmp1TRi5PKxmiT2uL4CJBysiGn+uUJpupuRnpfxH/qof7z5w==
-  dependencies:
-    "@posva/vuefire-core" "^2.3.4"
-
 vuetify-loader@^1.7.0:
   version "1.7.2"
   resolved "https://registry.nlark.com/vuetify-loader/download/vuetify-loader-1.7.2.tgz#5cdc45309496cf3a5fe431fd7611706ffa4aa8c8"
@@ -9149,6 +9142,18 @@ vuetify@^2.4.0:
   version "2.5.8"
   resolved "https://registry.nlark.com/vuetify/download/vuetify-2.5.8.tgz?cache=0&sync_timestamp=1627705381365&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvuetify%2Fdownload%2Fvuetify-2.5.8.tgz#a23e6a7e77b77de0744b53cf1e7c9d40efac0635"
   integrity sha1-oj5qfne3feB0S1PPHnydQO+sBjU=
+
+vuex@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.6.2.tgz#236bc086a870c3ae79946f107f16de59d5895e71"
+  integrity sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==
+
+vuexfire@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/vuexfire/-/vuexfire-3.2.5.tgz#d176b655d6a103b5bcee19bdeeb8b3ec6eeff48b"
+  integrity sha512-fztRzKljqTjNmNexAzKkk7b9h/xrNu3e2hI05VZAT6/hRljRUJavxO5ATXZCXG4rQE3kNHODpMJG6BiR2T8u0g==
+  dependencies:
+    "@posva/vuefire-core" "^2.3.4"
 
 watchpack-chokidar2@^2.0.1:
   version "2.0.1"

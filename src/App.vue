@@ -11,6 +11,7 @@
 <script>
 import Navbar from "./components/bars/navbar.vue";
 import { list_songs } from "./api/net-ease.js";
+import { db } from "./api/db";
 
 export default {
   name: "App",
@@ -25,7 +26,10 @@ export default {
   },
 
   data: () => ({
-    //
+    documents: [],
   }),
+  firestore: {
+    documents: db.collection("songlist"),
+  },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <navbar :toggleDrawer="toggleDrawer" />
+    <navbar />
 
     <v-main>
       <v-tabs v-model="tab" centered>
@@ -33,7 +33,6 @@
 
 <script>
 import Navbar from "./components/bars/Navbar.vue";
-import { list_songs } from "./api/net-ease.js";
 import Songlist from "./components/page/Songlist.vue";
 import SearchSong from "./components/page/SearchSong.vue";
 
@@ -44,22 +43,14 @@ export default {
     Navbar,
     Songlist,
     SearchSong,
-
-    // HelloWorld,
   },
 
   mounted() {
-    this.songList = list_songs("海阔天空");
+    //
   },
 
   data: () => ({
-    drawer: true,
     tab: "save",
   }),
-  methods: {
-    toggleDrawer() {
-      this.drawer = !this.drawer;
-    },
-  },
 };
 </script>

@@ -13,7 +13,7 @@
         <v-card-actions>
           <v-btn
             @click="onSaveSong"
-            class="ml-2 mt-3"
+            class="ma-3 mt-2"
             fab
             icon
             height="40px"
@@ -28,15 +28,37 @@
       <v-col>
         <v-card-title class="text-h5" v-text="updatedSong.name"></v-card-title>
         <v-card-subtitle>
-          <v-chip
-            v-for="artist in updatedSong.artist"
-            outlined
-            :key="artist.id"
-            class="ma-2"
-            label
-          >
-            {{ artist.name }}
-          </v-chip>
+          <v-row>
+            <v-col cols="auto">
+              <v-chip
+                @change="onSaveSong"
+                v-for="artist in updatedSong.artist"
+                :key="artist.id"
+                class="ma-2"
+                label
+              >
+                {{ artist.name }}
+              </v-chip>
+            </v-col>
+            <v-col>
+              <v-select
+                @change="onChangeState"
+                :items="statusChoice"
+                dense
+                rounded
+                hide-details
+                chips
+                solo
+                flat
+                :value="updatedSong.status"
+                ><template #selection="{ item }">
+                  <v-chip color="primary" class="ma-2" label>{{
+                    item.text
+                  }}</v-chip>
+                </template></v-select
+              >
+            </v-col>
+          </v-row>
         </v-card-subtitle>
       </v-col>
     </v-row>
@@ -51,6 +73,15 @@ export default {
   },
   data() {
     return {
+      statusChoice: [
+        { text: "未选", value: "default" },
+        { text: "好听", value: "listen" },
+        { text: "想唱", value: "want" },
+        { text: "会唱", value: "know" },
+        { text: "唱得好", value: "good" },
+        { text: "简直了", value: "great" },
+      ],
+
       // updatedSong: {},
     };
   },
@@ -58,13 +89,24 @@ export default {
     songIdList: function() {
       return this.$store.state.songIdList;
     },
+    songInfoList: function() {
+      return this.$store.state.songDbInfoList;
+    },
     updatedSong: function() {
       const song = this.song;
+      let status = "default";
+
+      this.songInfoList.forEach((songInfo) => {
+        if (songInfo.index == song.id) {
+          status = songInfo.status;
+        }
+      });
       const transformSong = {
         ...song,
         artist: song.artists ? song.artists : song.ar,
         album: song.album ? song.album : song.al,
         isSaved: this.songIdList.includes(song.id),
+        status: status,
       };
       return transformSong;
     },
@@ -74,6 +116,12 @@ export default {
     onSaveSong() {
       this.$store.commit("toggleSong", this.updatedSong.id);
       this.updatedSong.isSaved = !this.updatedSong.isSaved;
+    },
+    onChangeState(state) {
+      this.$store.commit("changeSongStatus", {
+        index: this.updatedSong.id,
+        status: state,
+      });
     },
   },
 };

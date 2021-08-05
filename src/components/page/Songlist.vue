@@ -7,7 +7,8 @@
         cols="6"
         sm="12"
         md="6"
-        xl="4"
+        lg="4"
+        xl="3"
       >
         <song-card :song="song" />
       </v-col>

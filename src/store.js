@@ -11,18 +11,38 @@ const store = new Vuex.Store({
     songlistFirebase: [],
     songlist: [],
     songIdList: [],
+    songDbInfoList: [],
     dbRef: db.collection("songlist").doc("0rsQhlGv6gcLX63RIvPc"),
   },
   mutations: {
     // other mutations
     ...vuexfireMutations,
     toggleSong(state, songId) {
-      const newSongsList = state.songIdList;
-      if (!newSongsList.includes(songId)) {
-        newSongsList.push(songId);
+      const newSongsList = state.songDbInfoList;
+      if (!state.songIdList.includes(songId)) {
+        newSongsList.push({ index: songId, status: "default" });
       } else {
-        newSongsList.splice(newSongsList.indexOf(songId), 1);
+        newSongsList.forEach((song, id) => {
+          if (song.index == songId) {
+            newSongsList.splice(id, 1);
+          }
+        });
       }
+      state.dbRef.update({
+        songs: newSongsList,
+      });
+    },
+    changeSongStatus(state, songInfo) {
+      const songId = songInfo.index;
+      const newSongsList = state.songDbInfoList;
+
+      newSongsList.forEach((song, id) => {
+        if (song.index == songId) {
+          newSongsList.splice(id, 1);
+          newSongsList.push(songInfo);
+        }
+      });
+
       state.dbRef.update({
         songs: newSongsList,
       });
@@ -37,11 +57,15 @@ const store = new Vuex.Store({
     }),
     getSonglistDetails: async ({ state }) => {
       if (state.songlistFirebase[0]) {
-        const idList = state.songlistFirebase[0].songs;
+        const infoList = state.songlistFirebase[0].songs;
+        let idList = [];
+        infoList.forEach((song) => {
+          idList.push(song.index);
+        });
         const songDetailsList = await song_details(idList);
+        state.songDbInfoList = infoList;
         state.songIdList = idList;
         state.songlist = songDetailsList;
-        console.log("store", songDetailsList);
       }
     },
   },

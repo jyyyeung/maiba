@@ -1,7 +1,16 @@
 <template>
   <v-container fluid>
     <v-card flat>
-      <SearchBar @song-name="onSearchSong" />
+      <v-row>
+        <v-col>
+          <SearchBar @song-name="onSearchSong" />
+        </v-col>
+        <!-- <v-col cols="3">
+          <v-btn @click="getHotList">
+            热播榜
+          </v-btn>
+        </v-col> -->
+      </v-row>
 
       <v-row>
         <v-col
@@ -10,7 +19,8 @@
           cols="6"
           xs="12"
           md="6"
-          xl="4"
+          lg="4"
+          xl="3"
         >
           <song-card :song="song" />
           <!-- <v-divider /> -->
@@ -47,6 +57,10 @@ export default {
       this.result = await list_songs(this.search.name);
       console.log(this.result);
     },
+    // async getHotList() {
+    //   this.result = await hot_list();
+    //   console.log(this.result);
+    // },
   },
 };
 </script>

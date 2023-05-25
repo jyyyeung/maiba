@@ -1,15 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col
-        v-for="song in songlist"
-        :key="song.id"
-        cols="6"
-        sm="12"
-        md="6"
-        lg="4"
-        xl="3"
-      >
+      <v-col v-for="song in songlist" :key="song.id" cols="6" sm="12" md="6" lg="4" xl="3">
         <song-card :song="song" />
       </v-col>
     </v-row>
@@ -33,17 +25,17 @@ export default {
     this.$store.dispatch("bindSonglist");
   },
   watch: {
-    songlistFirebase: function(val) {
+    songlistFirebase: function (val) {
       if (val[0]) {
         this.$store.dispatch("getSonglistDetails");
       }
     },
   },
   computed: {
-    songlistFirebase: function() {
+    songlistFirebase: function () {
       return this.$store.state.songlistFirebase;
     },
-    songlist: function() {
+    songlist: function () {
       return this.$store.state.songlist;
     },
   },

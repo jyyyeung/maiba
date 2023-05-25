@@ -3,23 +3,12 @@
     <v-row align="stretch" class="fill-height">
       <v-col v-if="updatedSong.album.picUrl" cols="2">
         <v-avatar class="ma-3" size="100" tile>
-          <v-img
-            :src="updatedSong.album.picUrl"
-            :ref="updatedSong.album.pic || updatedSong.album.picId"
-          ></v-img>
+          <v-img :src="updatedSong.album.picUrl" :ref="updatedSong.album.pic || updatedSong.album.picId"></v-img>
         </v-avatar>
       </v-col>
       <v-col cols="1" :sm="!updatedSong.album.picUrl && 2">
         <v-card-actions>
-          <v-btn
-            @click="onSaveSong"
-            class="ma-3 mt-2"
-            fab
-            icon
-            height="40px"
-            right
-            width="40px"
-          >
+          <v-btn @click="onSaveSong" class="ma-3 mt-2" fab icon height="40px" right width="40px">
             <v-icon v-if="updatedSong.isSaved">mdi-music-box</v-icon>
             <v-icon v-else>mdi-music-box-outline</v-icon>
           </v-btn>
@@ -30,33 +19,17 @@
         <v-card-subtitle>
           <v-row>
             <v-col cols="auto">
-              <v-chip
-                @change="onSaveSong"
-                v-for="artist in updatedSong.artist"
-                :key="artist.id"
-                class="ma-2"
-                label
-              >
+              <v-chip @change="onSaveSong" v-for="artist in updatedSong.artist" :key="artist.id" class="ma-2" label>
                 {{ artist.name }}
               </v-chip>
             </v-col>
             <v-col>
-              <v-select
-                @change="onChangeState"
-                :items="statusChoice"
-                dense
-                rounded
-                hide-details
-                chips
-                solo
-                flat
-                :value="updatedSong.status"
-                ><template #selection="{ item }">
+              <v-select @change="onChangeState" :items="statusChoice" dense rounded hide-details chips solo flat
+                :value="updatedSong.status"><template #selection="{ item }">
                   <v-chip color="primary" class="ma-2" label>{{
                     item.text
                   }}</v-chip>
-                </template></v-select
-              >
+                </template></v-select>
             </v-col>
           </v-row>
         </v-card-subtitle>
@@ -86,13 +59,13 @@ export default {
     };
   },
   computed: {
-    songIdList: function() {
+    songIdList: function () {
       return this.$store.state.songIdList;
     },
-    songInfoList: function() {
+    songInfoList: function () {
       return this.$store.state.songDbInfoList;
     },
-    updatedSong: function() {
+    updatedSong: function () {
       const song = this.song;
       let status = "default";
 

@@ -41,7 +41,7 @@ export const song_details = (songIdList) => {
 //       .get(`${net_ease}/search/hot/detail`)
 //       .then((response) => {
 //         const data = response.data.data;
-//         console.log("song detail return data", data);
+//         console.log("song detail return data", data); 
 //         return resolve(data);
 //       })
 //       .catch((error) => {

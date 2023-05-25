@@ -1,11 +1,6 @@
 <template>
   <v-form @submit.prevent="onSearch">
-    <v-text-field
-      v-model="song_name"
-      outlined
-      label="Search Song"
-      prepend-icon="mdi-magnify"
-    ></v-text-field>
+    <v-text-field v-model="song_name" outlined label="Search Song" prepend-icon="mdi-magnify"></v-text-field>
   </v-form>
 </template>
 

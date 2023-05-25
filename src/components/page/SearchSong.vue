@@ -13,15 +13,7 @@
       </v-row>
 
       <v-row>
-        <v-col
-          v-for="song in result.songs"
-          :key="song.id"
-          cols="6"
-          xs="12"
-          md="6"
-          lg="4"
-          xl="3"
-        >
+        <v-col v-for="song in result.songs" :key="song.id" cols="6" xs="12" md="6" lg="4" xl="3">
           <song-card :song="song" />
           <!-- <v-divider /> -->
         </v-col>

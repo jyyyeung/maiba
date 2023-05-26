@@ -8,36 +8,27 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import SongCard from "../card/SongCard.vue";
+import { mapActions, mapState } from 'vuex';
 
 export default {
-  components: { SongCard },
-  name: "Songlist",
-  data() {
-    return {
-      // songlistFirebase: [],
-      // songlist: [],
-    };
+  computed: mapState([
+    'songlistFirebase',
+    'songlist'
+  ]),
+  components: {
+    SongCard
   },
-  mounted() {
-    console.log(this.$store.state.songlist);
-    this.$store.dispatch("bindSonglist");
-  },
+  methods: mapActions(['getSonglistDetails']),
   watch: {
-    songlistFirebase: function (val) {
-      if (val[0]) {
-        this.$store.dispatch("getSonglistDetails");
-      }
-    },
-  },
-  computed: {
-    songlistFirebase: function () {
-      return this.$store.state.songlistFirebase;
-    },
-    songlist: function () {
-      return this.$store.state.songlist;
-    },
-  },
-};
+    songlistFirebase: (val) => {
+      console.log((val))
+      // if (val[0]) {
+      //   this.getSonglistDetails();
+      // }
+    }
+  }
+}
+
 </script>

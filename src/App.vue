@@ -1,56 +1,47 @@
 <template>
   <v-app>
     <navbar />
-
     <v-main>
       <v-tabs v-model="tab" centered>
-        <v-tabs-slider></v-tabs-slider>
-
-        <v-tab href="#save">
+        <v-tab value="save">
           歌单
         </v-tab>
-
-        <v-tab href="#search">
+        <v-tab value="search">
           寻找
         </v-tab>
       </v-tabs>
-
-      <v-tabs-items v-model="tab">
-        <v-tab-item value="save">
+      <v-window v-model="tab">
+        <v-window-item value="save">
           <v-card flat>
             <songlist />
           </v-card>
-        </v-tab-item>
-        <v-tab-item value="search">
+        </v-window-item>
+        <v-window-item value="search">
           <v-card flat>
             <SearchSong />
           </v-card>
-        </v-tab-item>
-      </v-tabs-items>
+        </v-window-item>
+      </v-window>
     </v-main>
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 import Navbar from "./components/bars/Navbar.vue";
-import Songlist from "./components/page/Songlist.vue";
 import SearchSong from "./components/page/SearchSong.vue";
+import Songlist from "./components/page/Songlist.vue";
 
 export default {
-  name: "App",
-
+  data(): { tab: string } {
+    return {
+      tab: 'save'
+    }
+  },
   components: {
-    Navbar,
     Songlist,
-    SearchSong,
-  },
+    Navbar,
+    SearchSong
+  }
+}
 
-  mounted() {
-    //
-  },
-
-  data: () => ({
-    tab: "save",
-  }),
-};
 </script>

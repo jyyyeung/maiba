@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const net_ease = "https://netease-cloud-music-api-three-eta.vercel.app";
+const net_ease: string = "https://netease-cloud-music-api-three-eta.vercel.app";
 
-export const list_songs = (name) => {
-  return new Promise((resolve, reject) => {
+export const list_songs = (name: string) => {
+  return new Promise((resolve, reject): CloudsearchResult | undefined | void => {
     axios
       .get(`${net_ease}/cloudsearch?keywords=${name}`)
       .then((response) => {
-        const data = response.data.result;
+        const data: CloudsearchResult = response.data.result;
         console.log(data);
         return resolve(data);
       })
@@ -18,13 +18,13 @@ export const list_songs = (name) => {
   });
 };
 
-export const song_details = (songIdList) => {
+export const song_details = (songIdList: string) => {
   console.log(songIdList);
   return new Promise((resolve, reject) => {
     axios
       .get(`${net_ease}/song/detail?ids=${songIdList}`)
       .then((response) => {
-        const data = response.data.songs;
+        const data: Song[] = response.data.songs;
         console.log("song detail return data", data);
         return resolve(data);
       })
